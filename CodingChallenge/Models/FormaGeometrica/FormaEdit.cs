@@ -9,7 +9,8 @@ using System.Web.Mvc;
 namespace CodingChallenge.Models.FormaGeometrica
 {
     public class FormaEdit
-    {
+    {//Propiedades de la forma
+
         public string Nombre { get; set; }
         public SelectList TipoFormaList { get; set; }
         public Guid FormaId { get; set; }
@@ -24,7 +25,7 @@ namespace CodingChallenge.Models.FormaGeometrica
 
         [DisplayFormat(DataFormatString = "{0:#,###.##")]
         public decimal Area { get; set; }
-        [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)] 
         public decimal Perimetro { get; set; }
 
         
