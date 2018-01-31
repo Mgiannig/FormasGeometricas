@@ -7,7 +7,7 @@ Consideré adecuado no imprimir código HTML directamente desde la clase FiguraG
 Para solucionar esto, utilicé vistas Razor (cshtml) que toman valores seteados en el model From.cs.
 Las propiedades de la figura geométrica se encuentran en el modelo FormaEdit.cs
 
-Utilicé la clase FormaGeometrica para albergar los métodos de cálculo del área y perímetro de las figuras ingresadas por el usuario. La clase TipoForma se utiliza para dar referencia entre los nobmres y los tipos de id de las formas.
+Utilicé la clase FormaGeometrica para albergar los métodos de cálculo del área y perímetro de las figuras ingresadas por el usuario. La clase TipoForma se utiliza para dar referencia entre los nobmres y los tipos de id de las formas. Un cambio principal que le hice a los métodos de cálculo fue hacer que solo tengan un return, en lugar de uno por caso.
 
 Utilizando una interfaz dinámica, el usuario puede elegir la cantidad y tipos de figuras que desea reportar. Los campos de texto disponibles varían según la figura elegida por el usuario (por ejemplo, para trapecio aparecen más campos de texto). Para lograr esto, utilicé Jquery.
 

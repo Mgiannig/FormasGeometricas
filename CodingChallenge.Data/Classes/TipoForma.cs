@@ -12,6 +12,5 @@ namespace CodingChallenge.Business.Classes
         public const int TrianguloEquilatero = 2;
         public const int Circulo = 3;
         public const int Trapecio = 4;
-
     }
 }

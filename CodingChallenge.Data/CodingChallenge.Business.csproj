@@ -55,6 +55,7 @@
     <Compile Include="Classes\FormaGeometrica.cs" />
     <Compile Include="Classes\Idioma.cs" />
     <Compile Include="Classes\TipoForma.cs" />
+    <Compile Include="Classes\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
