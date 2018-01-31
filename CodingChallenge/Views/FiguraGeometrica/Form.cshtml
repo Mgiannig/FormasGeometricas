@@ -1,0 +1,84 @@
+﻿@model CodingChallenge.Models.FormaGeometrica.Form
+
+<div class="heading container-fluid">
+    <div class="page-header">
+        <div class="row" data-spy="affix" data-offset-top="0">
+            <div class="col-md-7">
+                <h1>Bienvenido</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <div class="container-fluid">
+        <div class="detail-info">
+            <div class="content">
+                <div class="col-md-8">
+                    @using (Html.BeginForm("Reporte", "FiguraGeometrica", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true)
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Instancias</h4>
+                                <ul class="list-unstyled">
+                                    <li class="row col-title">
+                                        <div class="InstanciasHeader form-group">
+                                            <div class="col-md-2 form-group">
+                                                <strong>@CodingChallenge.Classes.Common.GetWord("Tipo de figura") </strong>
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <strong>@CodingChallenge.Classes.Common.GetWord("Lado") </strong>
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <strong>@CodingChallenge.Classes.Common.GetWord("Altura") </strong>
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <strong>@CodingChallenge.Classes.Common.GetWord("Lado b") </strong>
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <strong>@CodingChallenge.Classes.Common.GetWord("Lado c") </strong>
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <strong>@CodingChallenge.Classes.Common.GetWord("Lado d") </strong>
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled" id="formaList">
+                                    @foreach (CodingChallenge.Models.FormaGeometrica.FormaEdit forma in Model.ListaFigura)
+                                    {
+                                        Html.RenderPartial("_figuraEdit", forma);
+                                    }
+                                </ul>
+                                <button type="button" class="btn btn-success" id="btnAgregarForma">@CodingChallenge.Classes.Common.GetWord("Agregar") </button>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> @CodingChallenge.Classes.Common.GetWord("Generar reporte") </button>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts {
+
+    <script src="~/Scripts/Views/Reporte.js"></script>
+    <script>
+        var formaAddUrl = '@Url.Action("AddFigura", "FiguraGeometrica")';
+    </script>
+}
+

@@ -1,0 +1,71 @@
+﻿@model CodingChallenge.Models.FormaGeometrica.Form
+
+<div class="heading container-fluid">
+    <div class="page-header">
+        <div class="row" data-spy="affix" data-offset-top="0">
+            <div class="col-md-7">
+                <h1>Bienvenido</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    @if (Model.ListaFigura.Count > 0)
+    {
+        <div class="container-fluid">
+            <div class="detail-info">
+                <div class="content">
+                    @*Usando LinQ en vez de declarar variables contadoras*@
+                    <div> @CodingChallenge.Classes.Common.GetWord("Cantidad de cuadrados") : @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.Cuadrado)</div>
+                    <div>
+                        @CodingChallenge.Classes.Common.GetWord("Cantidad de triangulos equilateros") @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.TrianguloEquilatero)
+                    </div>
+                    <div>
+                        @CodingChallenge.Classes.Common.GetWord("Cantidad de circulos")  @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.Circulo)
+                    </div>
+                    <div>
+                        @CodingChallenge.Classes.Common.GetWord("Cantidad de trapecios") @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.Trapecio)
+                    </div>
+                    <hr />
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>@CodingChallenge.Classes.Common.GetWord("Forma")</th>
+                                <th>@CodingChallenge.Classes.Common.GetWord("Area")</th>
+                                <th>@CodingChallenge.Classes.Common.GetWord("Perimetro")</th>
+
+                                <th style="width:30px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var forma in Model.ListaFigura)
+                            {
+                                <tr>
+
+                                    <td>@CodingChallenge.Classes.Common.GetWord(@forma.Nombre)</td>
+                                    <td>@forma.Area m</td>
+                                    <td>@forma.Perimetro m</td>
+
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {<h2>No se encontraron figuras</h2>}
+</section>
+
+@section scripts {
+
+    <script src="~/Scripts/Views/Reporte.js"></script>
+    <script>
+        var formaAddUrl = '@Url.Action("AddFigura", "FiguraGeometrica")';
+    </script>
+}
+

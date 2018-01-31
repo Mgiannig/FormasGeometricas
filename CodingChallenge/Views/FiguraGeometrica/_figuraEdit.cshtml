@@ -1,0 +1,40 @@
+﻿@model CodingChallenge.Models.FormaGeometrica.FormaEdit
+
+
+<li id="li-forma-@Model.FormaId" class="row">
+    @using (Html.BeginCollectionItem("ListaFigura"))
+    {
+        @Html.HiddenFor(x => x.FormaId)
+        <div class="col-md-2 form-group">
+            @Html.DropDownListFor(x => x.TipoFormaId, Model.TipoFormaList, new { @class = "form-control dropDownTipoFigura", @data_id =  Model.FormaId  })
+            @Html.HiddenFor(x => x.TipoFormaId)
+
+        </div>
+        <div class="col-md-1 form-group">
+            @Html.EditorFor(model => model.Lado, new { htmlAttributes = new { @class = "form-control ", @id="lado-" + Model.FormaId } })
+
+            @Html.HiddenFor(x => x.Lado)
+        </div>
+        <div class="col-md-1 form-group" >
+            @Html.EditorFor(model => model.Altura, new { htmlAttributes = new {@style ="display:none", @class = "form-control ", @id = "altura-" + Model.FormaId } })
+            @Html.HiddenFor(x => x.Altura)
+        </div>
+        <div class="col-md-1 form-group">
+            @Html.EditorFor(model => model.LadoB, new { htmlAttributes = new { @style = "display:none", @class = "form-control ", @id = "ladoB-" + Model.FormaId } })
+            @Html.HiddenFor(x => x.LadoB)
+        </div>
+        <div class="col-md-1 form-group" >
+            @Html.EditorFor(model => model.LadoC, new { htmlAttributes = new { @style = "display:none", @class = "form-control ", @id = "ladoC-" + Model.FormaId } })
+            @Html.HiddenFor(x => x.LadoC)
+        </div>
+        <div class="col-md-1 form-group" >
+            @Html.EditorFor(model => model.LadoD, new { htmlAttributes = new { @style = "display:none", @class = "form-control ", @id = "ladoD-" + Model.FormaId } })
+            @Html.HiddenFor(x => x.LadoD)
+        </div>
+        <div class="col-sm-1 form-group">
+            <button type="button" class="btn btn-o btn-danger del-forma" data-id="@Model.FormaId"><i class="fa fa-trash"></i> Eliminar</button>
+        </div>
+    }
+</li>
+
+<hr />
