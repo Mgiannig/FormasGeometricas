@@ -10,6 +10,7 @@ namespace CodingChallenge.Models.FormaGeometrica
 {
     public class FormaEdit
     {
+        public string Nombre { get; set; }
         public SelectList TipoFormaList { get; set; }
         public Guid FormaId { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Indique el tipo de forma")]
@@ -21,9 +22,12 @@ namespace CodingChallenge.Models.FormaGeometrica
         public decimal LadoC { get; set; }
         public decimal LadoD { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:#,###.##")]
         public decimal Area { get; set; }
+        [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
         public decimal Perimetro { get; set; }
-        public string Nombre { get; set; }
+
+        
 
     }
 }

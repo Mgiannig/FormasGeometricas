@@ -4,7 +4,7 @@
     <div class="page-header">
         <div class="row" data-spy="affix" data-offset-top="0">
             <div class="col-md-7">
-                <h1>Bienvenido</h1>
+                <h1>Reporte</h1>
             </div>
         </div>
     </div>
@@ -12,19 +12,20 @@
 <section>
     @if (Model.ListaFigura.Count > 0)
     {
+
         <div class="container-fluid">
             <div class="detail-info">
                 <div class="content">
-                    @*Usando LinQ en vez de declarar variables contadoras*@
-                    <div> @CodingChallenge.Classes.Common.GetWord("Cantidad de cuadrados") : @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.Cuadrado)</div>
+                    @*Usando LinQ en vez de declarar variables acumuladoras*@
+                    <div> @CodingChallenge.Classes.Common.GetWord("Cantidad de cuadrados") : @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.Cuadrado && x.Area > 0 && x.Perimetro > 0)</div>
                     <div>
-                        @CodingChallenge.Classes.Common.GetWord("Cantidad de triangulos equilateros") @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.TrianguloEquilatero)
+                        @CodingChallenge.Classes.Common.GetWord("Cantidad de triangulos equilateros") @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.TrianguloEquilatero && x.Area > 0 && x.Perimetro > 0)
                     </div>
                     <div>
-                        @CodingChallenge.Classes.Common.GetWord("Cantidad de circulos")  @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.Circulo)
+                        @CodingChallenge.Classes.Common.GetWord("Cantidad de circulos")  @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.Circulo && x.Area > 0 && x.Perimetro > 0)
                     </div>
                     <div>
-                        @CodingChallenge.Classes.Common.GetWord("Cantidad de trapecios") @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.Trapecio)
+                        @CodingChallenge.Classes.Common.GetWord("Cantidad de trapecios") @Model.ListaFigura.Count(x => x.TipoFormaId == CodingChallenge.Business.Classes.TipoForma.Trapecio && x.Area > 0 && x.Perimetro > 0)
                     </div>
                     <hr />
                     <table class="table table-striped">
@@ -41,15 +42,15 @@
 
                             @foreach (var forma in Model.ListaFigura)
                             {
+                                if (forma.Area > 0 || forma.Perimetro > 0)
+                                {
                                 <tr>
-
                                     <td>@CodingChallenge.Classes.Common.GetWord(@forma.Nombre)</td>
-                                    <td>@forma.Area m</td>
-                                    <td>@forma.Perimetro m</td>
-
-
+                                    <td>@forma.Area.ToString("#,###.##")m </td>
+                                    <td>@forma.Perimetro.ToString("#,###.##") m</td>
 
                                 </tr>
+                                }
                             }
                         </tbody>
                     </table>
