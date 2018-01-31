@@ -1,38 +1,25 @@
+Comentarios generales sobre la producción
 
-# InvertirOnline.com Coding Challenge
+Patrón utilizado: MVC + Business Layer. 
 
-Bienvenido!
+Consideré adecuado no imprimir código HTML directamente desde la clase FiguraGeometrica, como estaba originalmente en la prueba, debido a lo difícil que suele ser darle mantenimiento a esos casos. 
 
-Nos encontramos en la búsqueda de desarrolladores .NET para que se incorporen a nuestro equipo. Después de múltiples procesos de selección, llegamos a la conclusión de que el código habla por si mismo. Con lo cual si te sentís dispuesto a afrontar el desafío, por favor tomate un rato para jugar con el problema y resolverlo.
+Para solucionar esto, utilicé vistas Razor (cshtml) que toman valores seteados en el model From.cs.
+Las propiedades de la figura geométrica se encuentran en el modelo FormaEdit.cs
 
-### Cómo participar del proceso?
+Utilicé la clase FormaGeometrica para albergar los métodos de cálculo del área y perímetro de las figuras ingresadas por el usuario. La clase TipoForma se utiliza para dar referencia entre los nobmres y los tipos de id de las formas.
 
-Abajo detallamos el problema a resolver, cuando consideres que está resuelto, **no** envíes pull request. Envía un mail a busquedas.it@invertironline.com con el link a tu fork, y si tenés algún comentario sobre tu implementación, también podés agregarlo ahí.
+Utilizando una interfaz dinámica, el usuario puede elegir la cantidad y tipos de figuras que desea reportar. Los campos de texto disponibles varían según la figura elegida por el usuario (por ejemplo, para trapecio aparecen más campos de texto). Para lograr esto, utilicé Jquery.
 
-### Comenzando
+Solo las figuras creadas por el usuario en el momento pasarán al reporte, por lo que este puede optar por eliminarlas con el botón. Las figuras con datos vacíos no serán tomadas en cuenta en el reporte.
 
-El repositorio en el cual te encontrás tiene sólo un par de cosas. Para resolver el problema y levantar la app necesitás:
-  
-  * .NET Framework 4.6.2
-  * Visual Studio 2015 en adelante
-  * Forkear este repositorio y armar un nuevo branch.
+El reporte se genera en una tabla de HTML según lo que el usuario elija. Si bien las tablas ya no son tan utilizadas, consideré que serían adecuadas para mostrar información sencilla en este caso. 
+En lugar de declarar acumuladores, utilicé LINQ para mostrar la cantidad y tipo de figuras reportadas. 
 
-### El problema
+Consideré que es muy poco mantenible repetir todos los párrafos en diferente idioma. Por lo que se me ocurrió dejar la base para la implementación de un método llamado GetLang. De esta manera podemos encerrar todos los string de la solución en este método. Por ejemplo GetLang("Bienvenido") para que se traduzcan automáticamente. 
 
-La idea sería poder desarrollar un formulario en donde el usuario pueda ingresar distintas formas geométricas, junto con la longitud del lado (o los lados), y que una vez que haya finalizado de ingresar datos el sistema prepare un reporte con el resumen de lo ingresado (en un idioma a seleccionar por el usuario), sumándole unos cálculos sobre las áreas y perímetros de estas formas. Este reporte ya está codificado en el método Imprimir(), con esta firma:
+No me ha tocado trabajar con Unit testing aun. Sin embargo, estuve investigando sobre estos. Creo que debido a los cambios realizados los unit testing existentes no son del todo válido. Podrían confexionarse nuevos tests sobre los métodos de calculo de área y perímetro.
 
-```csharp
-public static string Imprimir(List<FormaGeometrica> formas, int idioma)
-```
+Sobre el desafio en general: Me agradó la libertad que se le da al aplicante para realizar el challenge. Quizás al principio me limitaba un poco la existencia de los tests.
 
-Al mismo tiempo, encontramos muy díficil el poder agregar o bien una nueva forma geométrica, o imprimir el reporte en otro idioma. Nos gustaría poder dar soporte para que el usuario pueda agregar otros tipos de formas (trapecios o rectángulos por ejemplo), u obtener el reporte en otros idiomas, pero escalar es muy dificultoso. ¿Nos podrías dar una mano a refactorear la clase FormaGeometrica?
 
-Acompañando al proyecto encontrarás una serie de tests unitarios que describen el comportamiento del método Imprimir. **Se puede modificar cualquier cosa del código y de los tests, con la única condición que los tests deben pasar correctamente al entregar la solución.**
-
-### Cómo funciona
-
-Lo que te encontrás al levantar la .sln es un proyecto Web de .NET, con todas las referencias y packages básicos para arrancar. Tiene las referencias tanto para MVC como para WebApi, de manera que la implementación es libre. Además, tenemos una librería con el objeto de negocio FormaGeometrica, y un pequeño proyecto con test unitarios sobre el método de impresión de reporte.
-
-La forma de resolver el problema es toda tuya! Crear nuevos proyectos para separar responsabilidades, instalar frameworks de JS para trabajar client-side, usar sintaxis simple de Razor y el paradigma de MVC, las decisiones son múltiples. 
-
-**¡¡Buena suerte!!**
